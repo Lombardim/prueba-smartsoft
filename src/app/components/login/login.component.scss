@@ -1,0 +1,55 @@
+$form-width: 50vw;
+$form-height: 70vh;
+
+
+.background {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100%;
+    background-color: rgba($color: #000, $alpha: .2);
+}
+
+.container {
+    width: $form-width;
+}
+
+mat-card {
+    height: $form-height;
+}
+
+mat-card-title {
+    text-align: center;    
+    padding: .5em 0;
+    height: 7%;
+}
+
+mat-card-content{
+    height: 85%;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;    
+    height: 100%;
+}
+
+mat-form-field {
+    width: 95%;
+    margin: 1em 0;
+}
+
+mat-card-actions {
+    display: flex;
+    flex-direction: column;
+}
+
+.links {
+    color: blue;
+    padding: .1em;
+}
+button {
+    padding: 0.2em 0.5ems;
+}
