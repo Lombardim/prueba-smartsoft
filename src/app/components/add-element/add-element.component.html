@@ -1,11 +1,13 @@
-<body>
+<header>
     <nav>
-        <app-navbar></app-navbar>
+        <app-navbar [title]="title"></app-navbar>
     </nav>
-    <main>
-
+</header>
+<body>
+    <main [class]="tab ? 'big-main' : ''">
+        <h1>CREATE ELEMENT</h1>
     </main>
-    <aside>
-        <app-sidebar></app-sidebar>
+    <aside [class]="tab ? 'small-tab' : ''">
+        <app-sidebar [sidebarElements]="sidebarElements" (display)="changeDisplay($event)"></app-sidebar>
     </aside>
 </body>

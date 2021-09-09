@@ -8,6 +8,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { AppRoutingModule } from './app-routing.module';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 
   /* COMPONENTS */
@@ -44,6 +45,7 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
     MatButtonModule,
     MatIconModule,
     MatSnackBarModule,
+    MatTooltipModule,
     BrowserAnimationsModule
   ],
   providers: [],

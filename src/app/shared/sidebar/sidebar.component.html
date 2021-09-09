@@ -1,1 +1,14 @@
-<p>sidebar works!</p>
+<div class="container">
+    <div class="tab-control" [class]="big ? '' : 'small-tab'" (click)='tabControl()'>
+        <mat-icon> {{ direction }} </mat-icon>
+    </div>
+    <div class="element" [class]="element.active" (click)="openRoute(element.path)"
+    *ngFor="let element of sidebarElements">
+        <div>
+            <mat-icon> {{ element.icon }} </mat-icon>
+            <span *ngIf="big">
+                {{ element.name }}
+            </span>
+        </div>
+    </div>    
+</div>

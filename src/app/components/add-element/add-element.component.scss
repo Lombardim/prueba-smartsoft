@@ -1,0 +1,28 @@
+@mixin size($height, $width) {
+    height: $height;
+    width: $width;
+}
+
+body {
+    @include size(89vh, 100%);
+    
+}
+
+aside {
+    float: left;
+    @include size(89vh, 25%);
+}
+
+main {
+    background-color: rgba($color: #000, $alpha: .2);
+    float: right;
+    @include size(100%, 75%);
+}
+
+.big-main {
+    @include size(100%, 95%);
+}
+
+.small-tab {
+    @include size(89vh, 5%);
+}

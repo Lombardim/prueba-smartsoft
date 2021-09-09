@@ -85,6 +85,7 @@ button {
 @media (max-width: 449px){
     .return {
         transform: scale(.7);
+        transition: 500ms;  
     }
     .container {
         @include size(100vh, 100vw);    
