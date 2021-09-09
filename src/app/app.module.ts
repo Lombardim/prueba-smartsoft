@@ -16,6 +16,9 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AddElementComponent } from './components/add-element/add-element.component';
+import { SidebarComponent } from './shared/sidebar/sidebar.component';
+import { NavbarComponent } from './shared/navbar/navbar.component';
 
 
 
@@ -25,7 +28,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    DashboardComponent
+    DashboardComponent,
+    AddElementComponent,
+    SidebarComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
