@@ -1,6 +1,7 @@
-$form-width: 50vw;
-$form-height: 70vh;
-
+@mixin size($height, $width) {
+    width: $width;
+    height: $height;
+}
 
 .background {
     display: flex;
@@ -10,22 +11,25 @@ $form-height: 70vh;
     background-color: rgba($color: #000, $alpha: .2);
 }
 
-.container {
-    width: $form-width;
-}
-
 mat-card {
-    height: $form-height;
+    height: 100%;
 }
 
 mat-card-title {
     text-align: center;    
     padding: .5em 0;
-    height: 7%;
+}
+
+img {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 100%;
+    max-height: 100%;
 }
 
 mat-card-content{
-    height: 85%;
+    height: 75%;
 }
 
 form{
@@ -44,12 +48,83 @@ mat-form-field {
 mat-card-actions {
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
 .links {
     color: blue;
     padding: .1em;
+    
 }
 button {
-    padding: 0.2em 0.5ems;
+    padding: 0.2em 0.5em;
+}
+
+@media (max-width: 449px){
+    .container {
+        @include size(100vh, 100vw);    
+        transition: 500ms;   
+    }
+    button{
+        width: 110%;
+    }
+    .links{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media (min-width: 450px){
+    .container {
+        @include size(100vh, 100vw);    
+        transition: 500ms;   
+    }
+    button{
+        width: 60%;
+    }
+}
+
+@media (min-width: 601px){
+    .container {
+        position: absolute;
+        top: 2.5%;
+        @include size(90vh, 75vw);
+        transition: 500ms;
+    }
+    button{
+        width: 60%;
+    }
+    .links{
+        margin-top: .5em;
+    }
+}
+@media (min-width: 751px){
+    .container {
+        position: absolute;
+        top: 2.5%;
+        @include size(90vh, 55vw);
+        transition: 500ms;
+    }
+    button {
+        width: 90%;
+    }
+    .links{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}
+@media (min-width: 1000px){
+    .container {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        @include size(80vh, 40vw);
+        transition: 500ms;
+    }
+    .links{
+        display: flex;
+        flex-direction: row;
+    }
 }

@@ -1,6 +1,8 @@
 <div class="background">
     <div class="container">
         <mat-card>
+            <img width="150" height="50" 
+            src="https://smartsoft.com.co/wp-content/uploads/2020/10/logo-SmartSoft.png" >
             <mat-card-title>
                 INICIO DE SESION
             </mat-card-title>
@@ -10,19 +12,21 @@
                     <mat-form-field appearance="fill">
                         <mat-label>Ingrese su nombre de usuario: </mat-label>
                         <input matInput placeholder="Escriba su nombre de usuario" [formControl]="userName" required>
-                        <mat-error *ngIf="userName.invalid">{{getErrorMessage()}}</mat-error>
+                        <mat-error *ngIf="userName.invalid">{{getErrorMessageU()}}</mat-error>
                     </mat-form-field>
                     <mat-form-field appearance="fill">
                         <mat-label>Escriba su contraseña: </mat-label>
-                        <input matInput [type]="hide ? 'password' : 'text'">
+                        <input matInput placeholder="Escriba su contraseña" [type]="hide ? 'password' : 'text'" [formControl]="passWord" required>
                         <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
                           <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
                         </button>
+                        <mat-error *ngIf="passWord.invalid">{{getErrorMessageP()}}</mat-error>
                     </mat-form-field>
                     <mat-card-actions>                     
+                        <!-- LOGIN FUNCTIONALITY NEEDS TO BE ADDED -->
                         <button mat-raised-button color="primary">INICIAR SESION</button>
                         <div class="links">
-                            <a mat-button href="#">¿Desea crear una cuenta?</a>
+                            <a mat-button (click)="openRegister()">¿Desea crear una cuenta?</a>
                             <a mat-button (click)="openSnackBar('Esta funcionalidad aún no está disponible', 'Entendido')">¿Olvidó su contraseña?</a>
                         </div>
                     </mat-card-actions>                   
