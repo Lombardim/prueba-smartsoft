@@ -1,13 +1,112 @@
 <header>
     <nav>
-        <app-navbar [title]="title"></app-navbar>
+        <app-navbar [title]="tabTitle"></app-navbar>
     </nav>
 </header>
 <body>
     <main [class]="tab ? 'big-main' : ''">
-        <h1>CREATE ELEMENT</h1>
+        <div class="content">
+            <mat-card *ngIf="selectType" class="selectType">
+                <mat-card-content>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Seleccione el tipo de elemento a agregar: </mat-label>
+                        <mat-select [formControl]="type" required>
+                            <mat-option>--</mat-option>
+                            <mat-option value="posts">
+                                Posts
+                            </mat-option>
+                            <mat-option value="comments">
+                                Comentarios
+                            </mat-option>
+                            <mat-option value="albums">
+                                Albumes
+                            </mat-option>
+                            <mat-option value="photos">
+                                Fotos
+                            </mat-option>
+                            <mat-option value="to-do">
+                                Pendientes
+                            </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="type.hasError('required')">Debe seleccionar una opcion</mat-error>
+                    </mat-form-field>
+                    <mat-card-actions>                     
+                        <button mat-raised-button color="primary" (click)="getTypeSelection()">SELECCIONAR TIPO</button>
+                    </mat-card-actions>
+                </mat-card-content>
+            </mat-card>
+
+            <mat-card *ngIf="!selectType">
+                <div class="return">
+                    <a mat-fab color="primary" aria-label="return button with an icon" (click)="returnSelectType()">
+                        <mat-icon>arrow_back</mat-icon>
+                    </a>
+                    <a mat-flat-button color="primary" aria-label="return button with text" (click)="returnSelectType()">
+                        ATRAS
+                    </a>
+                </div>
+                <mat-card-title style="text-align: center;">
+                    {{ elementOptions[type.value].typeTitle }}
+                </mat-card-title>
+                <mat-card-content>
+                    <mat-form-field appearance="fill" *ngIf="elementOptions[type.value].id">
+                        <mat-label>Ingrese la ID del elemento: </mat-label>
+                        <input matInput placeholder="Escriba la ID... " [formControl]="id" required>
+                        <mat-error *ngIf="id.invalid">{{ getErrorMessageID() }}</mat-error>  
+                    </mat-form-field>
+                    <mat-form-field appearance="fill" *ngIf="elementOptions[type.value].title">
+                        <mat-label>Ingrese el titulo del elemento: </mat-label>
+                        <input matInput placeholder="Escriba el titulo... " [formControl]="title" required>
+                        <mat-error *ngIf="title.invalid">{{ getErrorMessageT() }}</mat-error>  
+                    </mat-form-field>
+                    <mat-form-field appearance="fill" *ngIf="elementOptions[type.value].name">
+                        <mat-label>Ingrese su nombre: </mat-label>
+                        <input matInput placeholder="Escriba su nombre... " [formControl]="name" required>
+                        <mat-error *ngIf="name.invalid">{{ getErrorMessageN() }}</mat-error>  
+                    </mat-form-field>
+                    <mat-form-field appearance="fill" *ngIf="elementOptions[type.value].email">
+                        <mat-label>Ingrese su email: </mat-label>
+                        <input type="email" matInput placeholder="Ej. ejemplo@gmail.com... " [formControl]="email" required>
+                        <mat-error *ngIf="email.invalid">{{ getErrorMessageE() }}</mat-error>  
+                    </mat-form-field>
+                    <mat-form-field appearance="fill" *ngIf="elementOptions[type.value].body">
+                        <mat-label>Ingrese el cuerpo del elemento: </mat-label>
+                        <textarea matInput placeholder="Escriba el cuerpo... " [formControl]="body" required></textarea>
+                        <mat-error *ngIf="body.invalid">{{ getErrorMessageB() }} </mat-error>  
+                    </mat-form-field>
+                    <mat-form-field appearance="fill" *ngIf="elementOptions[type.value].url">
+                        <mat-label>Ingrese el URL del elemento: </mat-label>
+                        <input type="url" matInput placeholder="Ej. https://via.placeholder.com/150/771796" [formControl]="url" required>
+                        <mat-error *ngIf="url.invalid">{{ getErrorMessageE() }}</mat-error>  
+                    </mat-form-field>
+                    <mat-form-field appearance="fill" *ngIf="elementOptions[type.value].thumbnailUrl">
+                        <mat-label>Ingrese la URL de la miniatura del elemento: </mat-label>
+                        <input type="url" matInput placeholder="Ej. https://via.placeholder.com/150/771796" [formControl]="thumbnail" required>
+                        <mat-error *ngIf="thumbnail.invalid">{{ getErrorMessageTU() }}</mat-error>  
+                    </mat-form-field>
+                    <mat-card-actions>                     
+                        <button mat-raised-button color="primary" (click)="addElement()">AGREGAR ELEMENTO</button>
+                    </mat-card-actions>
+                </mat-card-content>
+            </mat-card>
+        </div>
     </main>
     <aside [class]="tab ? 'small-tab' : ''">
         <app-sidebar [sidebarElements]="sidebarElements" (display)="changeDisplay($event)"></app-sidebar>
     </aside>
 </body>
+<div class="dialog-bg" *ngIf="dialog || loading">
+    <div class="dialog" *ngIf="dialog">
+        <div class="title">
+            <h3>¿Desea agregar más elementos?</h3>
+        </div>
+        <div class="dialog-body">
+            ¿Desea agregar más elementos? Si elige "NO" será redireccionado a la pantalla principal.
+        </div>
+        <div class="buttons">
+            <button mat-raised-button color="primary" (click)="returnSelectType()">SI</button>
+            <button mat-raised-button color="primary" (click)="navigateToDashboard()">NO</button>
+        </div>
+    </div>
+    <app-loading *ngIf="loading"></app-loading>
+</div>

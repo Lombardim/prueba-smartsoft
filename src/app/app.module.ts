@@ -7,8 +7,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { AppRoutingModule } from './app-routing.module';
+import { MatSelectModule } from '@angular/material/select';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { AppRoutingModule } from './app-routing.module';
 
 
   /* COMPONENTS */
@@ -20,6 +21,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AddElementComponent } from './components/add-element/add-element.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
+import { LoadingComponent } from './shared/loading/loading.component';
 
 
 
@@ -32,7 +34,8 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
     DashboardComponent,
     AddElementComponent,
     SidebarComponent,
-    NavbarComponent
+    NavbarComponent,
+    LoadingComponent
   ],
   imports: [
     BrowserModule,
@@ -46,6 +49,7 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
     MatIconModule,
     MatSnackBarModule,
     MatTooltipModule,
+    MatSelectModule,
     BrowserAnimationsModule
   ],
   providers: [],

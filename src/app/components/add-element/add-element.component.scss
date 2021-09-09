@@ -2,10 +2,12 @@
     height: $height;
     width: $width;
 }
-
+@mixin icon($top, $left){
+    top: $top;
+    left: $left;
+}
 body {
-    @include size(89vh, 100%);
-    
+    @include size(89vh, 100%);    
 }
 
 aside {
@@ -16,8 +18,47 @@ aside {
 main {
     background-color: rgba($color: #000, $alpha: .2);
     float: right;
-    @include size(100%, 75%);
+    @include size(89vh, 75%);
 }
+
+.dialog-bg {
+    position: absolute;
+    z-index: 5;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @include icon(0, 0);
+    @include size(100%, 100%);    
+
+    .dialog {
+        position: relative;
+        background-color: white;
+        box-shadow: 0 0 10px black;
+        border-radius: 1rem;
+
+        .title{
+            background-color: black;
+            text-transform: uppercase;
+            color: white;
+            text-align: center;
+            border-radius: 1rem 1rem 0 0;
+            @include size(20%, 100%);
+        }
+        .dialog-body{
+            @include size(40%, auto);
+            margin: .5em;
+        }
+        .buttons{
+            position: absolute;
+            right: 0;
+            display: flex;
+            @include size(auto, 40%);
+            justify-content: space-evenly;
+        }
+    }
+}
+
 
 .big-main {
     @include size(100%, 95%);
@@ -25,4 +66,185 @@ main {
 
 .small-tab {
     @include size(89vh, 5%);
+}
+
+.content {
+    display: flex;
+    justify-content: center;
+    margin-top: 1em;
+}
+
+mat-card {
+    width: 85%;
+
+    .return {
+        position: absolute;
+        color: #FFF;
+        z-index: 5;
+        @include icon(0.5%, 0.75%);
+        transform: scale(.6);
+    }
+    
+    .return a:last-child {
+        position: absolute;
+        @include icon(19.5%, 87%);
+        border-radius: 0 1em 1em 0;
+        background-color:  #3f51b5;
+        transform: scale(0, 1);
+        transform-origin: left;
+        transition: transform linear 250ms;
+    }
+    
+    .return:hover a:last-child {
+        transform: scale(1,1);
+    }
+
+    mat-card-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        mat-form-field {
+            width: 95%;
+            margin-top: 2em;
+        }
+        mat-card-actions button{
+            margin-top: .5em;
+        }
+        mat-card-actions button:hover {
+            box-shadow: 0 0 .4em darkblue;
+        }
+    }
+}
+
+@media (max-width: 449px){
+    body {
+        display: flex;
+        flex-direction: column;
+        @include size(110vh, 100vw);
+    }
+    main {
+        float: none;
+        position: relative;
+        @include size(100vh, 100vw);        
+    }
+    aside{
+        float: none;
+        position: relative;
+        @include size(10vh, 100vw);
+    }  
+    .dialog-bg{
+        @include size(121.25vh, 100vw);
+        .dialog{
+            @include size(30vh, 70vw);
+
+            .title h3{
+                font-size: .85em;
+            }
+            .buttons {
+                @include size(auto, 60%)
+            }
+        }
+    }  
+    
+}
+
+@media (min-width: 450px){
+    body {
+        display: flex;
+        flex-direction: column;
+        @include size(110vh, 100vw);
+    }
+    main {
+        float: none;
+        position: relative;
+        @include size(100vh, 100vw);        
+    }
+    aside{
+        float: none;
+        position: relative;
+        @include size(10vh, 100vw);
+    }  
+    .dialog-bg{
+        @include size(121.25vh, 100vw);
+        .dialog{
+            @include size(30vh, 70vw);
+            .buttons {
+                @include size(auto, 50%)
+            }
+        }
+    }  
+}
+
+@media (min-width: 601px){
+    @media (min-width: 450px){
+        .dialog-bg{
+            @include size(121.25vh, 100vw);
+            .dialog{
+                @include size(30vh, 60vw);
+                .buttons {
+                    @include size(auto, 50%)
+                }
+            }
+        }  
+    }    
+}
+@media (min-width: 751px){
+    body {
+        display: block;
+        @include size(103vh, 100vw);
+    }
+    main {
+        float: right;
+        @include size(100%, 75%);        
+    }
+    aside{
+        float: left;
+        @include size(100%, 25%);
+    }  
+    .dialog-bg{
+        @include size(114.5vh, 100vw);
+        .dialog{
+            @include size(30vh, 50vw);
+            .buttons {
+                @include size(auto, 50%)
+            }
+        }
+    }      
+    .big-main {
+        @include size(89vh, 90%);
+    }
+    .small-tab {
+        @include size(89vh, 10%);
+    }
+}
+
+@media (min-width: 1000px){
+    body {
+        @include size(89vh, 100%);
+    }
+    aside {
+        float: left;
+        @include size(89vh, 25%);
+    }
+    main {
+        background-color: rgba($color: #000, $alpha: .2);
+        float: right;
+        @include size(100%, 75%);
+    }
+    .dialog-bg{
+        @include size(100vh, 100vw);
+        .dialog{
+            @include size(27vh, 35vw);
+            .buttons {
+                @include size(auto, 50%)
+            }
+        }
+    }  
+    .big-main {
+        @include size(89vh, 95%);
+    }
+    .small-tab {
+        @include size(89vh, 5%);
+    }
 }

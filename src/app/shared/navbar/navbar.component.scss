@@ -14,7 +14,6 @@ img {
 h1 {
     margin: auto;
     color: #3f51b5;
-    font-size: 2.5em;
     font-weight: 700;
     cursor: default;
 }
@@ -27,4 +26,27 @@ h1 {
 
 .logout:hover {
     background-color: rgba(#3f51b5, 0.1);
+}
+
+@media (max-width: 449px){
+    h1{
+        display: none;
+    }
+}
+@media (min-width: 450px){
+    h1 {
+        font-size: 1.2em;
+    }
+}
+
+@media (min-width: 750px){
+    h1 {
+        font-size: 2em;
+    }
+}
+
+@media (min-width: 1000px){
+    h1 {
+        font-size: 2.5em;
+    }
 }

@@ -22,15 +22,12 @@
 .element {
     @include flex-position(center, center);
     @include size(10%, 100%);
-    font-size: 1.2em;
     font-weight: 450;
-
     transition: background-color linear 250ms;
 }
 
 .element div {
     @include flex-position(space-around, center);
-
     @include size(100%, 90%);
     box-sizing: border-box;
     border-bottom: .1em solid rgba(200, 200, 200, 0.8);
@@ -45,8 +42,7 @@
 .element:hover:not(.focused){
     cursor: pointer;
     background-color: #3f51b5;
-    color:white;
-    
+    color:white;    
     div{
         border: none;
     }
@@ -56,9 +52,6 @@
     cursor: pointer;
     @include flex-position(center, center);
     position: absolute;
-    @include size(3em, 3em);
-    right: -6%;
-    bottom: 20%;
     background-color: white;
     @include box-shadow(-.3em, .2em, .5em, #777);
 }
@@ -67,6 +60,73 @@
     transform: scale(1.5);
 }
 
-.small-tab{
-    right: -30%;
+
+@media (max-width: 449px){
+    .container{
+        @include flex-position(center, center);
+        flex-direction: row;
+    }
+    .element {
+        @include size(100%, 100%);
+    }
+    span {
+        display: none;
+    }
+    .tab-control {
+        display: none;
+    }
+}
+
+@media (min-width: 450px){
+    .container{
+        @include flex-position(center, center);
+        flex-direction: row;
+    }
+    .element {
+        @include size(100%, 100%);
+    }
+    span {
+        font-size: 0.8em;
+    }
+    .tab-control {
+        display: none;
+    }
+}
+
+@media (min-width: 751px){
+    .container{
+        @include flex-position(flex-start, center);
+        flex-direction: column;
+        @include size(100%, 100%);
+        .element{
+            @include size(15%, 100%);
+        }
+    }    
+    span {
+        font-size: 1em;
+    }
+    .tab-control {
+        display: flex;
+        @include size(3em, 3em);
+        right: -11%;
+        bottom: 20%;        
+    }
+    .small-tab{
+        right: -30%;
+    }
+}
+
+@media (min-width: 1000px){
+    .element{
+        @include size(10%, 100%);
+    }
+    .tab-control {
+        display: flex;
+        @include size(3em, 3em);
+        right: -6%;
+        bottom: 20%;        
+    }
+    .small-tab{
+        right: -30%;
+    }
 }
