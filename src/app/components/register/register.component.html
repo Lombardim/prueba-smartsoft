@@ -1,1 +1,51 @@
-<p>register works!</p>
+<div class="background">
+    <div class="return">
+        <a mat-fab color="primary" aria-label="return button with an icon" (click)="openLogin()">
+            <mat-icon>arrow_back</mat-icon>
+        </a>
+        <a mat-flat-button color="primary" aria-label="return button with text" (click)="openLogin()">
+            VOLVER
+        </a>
+    </div>
+    <div class="container">
+        <mat-card>
+            <img width="150" height="50" 
+            src="https://smartsoft.com.co/wp-content/uploads/2020/10/logo-SmartSoft.png" >
+            <mat-card-title>
+                INICIO DE SESION
+            </mat-card-title>
+            <hr>
+            <mat-card-content>
+                <form>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Ingrese su nombre: </mat-label>
+                        <input matInput placeholder="Escriba su nombre..." [formControl]="name" required>
+                        <mat-error *ngIf="userName.invalid">{{getErrorMessageN()}}</mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Ingrese su apellido: </mat-label>
+                        <input matInput placeholder="Escriba su apellido..." [formControl]="lastName" required>
+                        <mat-error *ngIf="userName.invalid">{{getErrorMessageL()}}</mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Ingrese su nombre de usuario: </mat-label>
+                        <input matInput placeholder="Escriba su nombre de usuario..." [formControl]="userName" required>
+                        <mat-error *ngIf="userName.invalid">{{getErrorMessageU()}}</mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Escriba su contraseña: </mat-label>
+                        <input matInput placeholder="Escriba su contraseña..." [type]="hide ? 'password' : 'text'" [formControl]="passWord" required>
+                        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                          <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+                        </button>
+                        <mat-error *ngIf="passWord.invalid">{{getErrorMessageP()}}</mat-error>
+                    </mat-form-field>
+                    <mat-card-actions>
+                        <!-- FUNCTIONALITY NEEDS TO BE ADDED -->
+                        <button mat-raised-button color="primary">CREAR CUENTA</button>                            
+                    </mat-card-actions>                   
+                </form>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>

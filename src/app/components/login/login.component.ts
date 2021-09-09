@@ -34,22 +34,24 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  getErrorMessageU() {
+  getErrorMessageU():string {
     if (this.userName.hasError('required')) {
-      return 'Debe escribir su nombre de usuario';
+      let message: string = 'Debe escribir su nombre de usuario';
+      return message;
     }
-    return this.userName.getError("...");
+    return '';
   }
 
-  getErrorMessageP() {
+  getErrorMessageP():string {
     if (this.passWord.hasError('required')){
-      return 'Debe escribir su contraseña';
+      let message: string = 'Debe escribir su contraseña';
+      return message;
     }
     if (this.passWord.hasError('minlength')){
-      return 'La longitud mínima debe ser de 6 caracteres';
+      let message: string = 'La longitud minima es de 6 caracteres';
+      return message;
     }
-
-    return '';
+    return '';    
   }
 
 }
