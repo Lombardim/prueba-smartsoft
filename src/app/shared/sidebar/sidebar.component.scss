@@ -12,7 +12,7 @@
     -moz-box-shadow: $x $y $blur $c;
     -ms-box-shadow: $x $y $blur $c;
     box-shadow: $x $y $blur $c;
-  }
+}
 
 .container{
     position: relative;
@@ -37,6 +37,7 @@
     background-color: #3f51b55e;
     border: none;
     color: #3f51b5;
+    cursor: default;
 }
 
 .element:hover:not(.focused){
@@ -59,7 +60,6 @@
 .tab-control mat-icon {
     transform: scale(1.5);
 }
-
 
 @media (max-width: 449px){
     .container{

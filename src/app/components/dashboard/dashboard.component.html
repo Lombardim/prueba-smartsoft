@@ -1,1 +1,75 @@
-<p>dashboard works!</p>
+<body>
+    <app-navbar [title]="tabTitle"></app-navbar>
+    <div class="black-screen" *ngIf="loading || edition >= 0">
+        <div class="loading-bg">
+            <app-loading *ngIf="loading"></app-loading>
+            <app-edit-dialog *ngIf="edition >= 0" 
+                [editElements]="editElements"
+                [editValues]="valueToEdit"
+                (cancelar)="cancelEdit($event)"
+                (editedValues)="getEdition($event)"></app-edit-dialog>
+        </div>
+    </div>
+    <div class="container">
+        <aside [class]="big ? '' : 'small-tab'">
+            <div class="side-bar">
+                <div class="element" [class]="element.active ? 'focused' : ''"
+                    *ngFor="let element of sidebarElements" (click)="getElementsList(element.type)">
+                    <div>
+                        <mat-icon> {{ element.icon }} </mat-icon>
+                        <span>
+                            {{ element.name }}
+                        </span>
+                    </div>
+                </div>
+                <div class="tab-control" [class]="big ? '' : 'change    -tab'" (click)='tabControl()'>
+                    <mat-icon> {{ direction }} </mat-icon>
+                </div>
+            </div>            
+        </aside>
+        <main [class]="big ? '' : 'big-main'">
+            <mat-card class="add-element">
+                <button mat-raised-button color="primary" (click)="openAddElement()" 
+                    [disabled]="edition >= 0 || loading">
+                    <mat-icon>add_circle</mat-icon> 
+                    AGREGAR ELEMENTO
+                </button>
+            </mat-card>
+            <div class="elem-container">                
+                <div class="list-elements" *ngFor="let element of displayedElements; let ind = index">
+                    <img *ngIf="selectedType == 'photos'" width="150" height="150" [src]="element.thumbnailUrl" alt="Miniatura">   
+                    <div class="contents">       
+                        <div class="elem-head"> 
+                            <h2> 
+                                <strong>ID: {{ element.id }}</strong>  {{ element.title }} {{ element.name }}
+                            </h2>
+                            <div class="state" *ngIf="selectedType == 'todos'">
+                                <mat-icon (click)="changeState(ind)" matTooltip="ESTADO"> {{ element.completed ? 'check_circle' : 'cancel' }} </mat-icon> 
+                            </div>
+                        </div>
+                        <div class="elem-body" *ngIf="selectedType != 'todos' && selectedType != 'albums'">
+                            <h4> {{ element.email }} </h4>
+                            <p> {{ element.body }} </p>      
+                            <a mat-icon-button [href]="element.url"
+                                *ngIf="selectedType == 'photos'"
+                                aria-label="icono de abrir link en nueva pestaña"
+                                target="_blank">
+                                ABRIR IMAGEN: <mat-icon>open_in_new</mat-icon>
+                            </a>                   
+                        </div>
+                    </div>
+                    <div class="buttons">
+                        <button mat-mini-fab color="primary" 
+                            aria-label="botón con cubo de basura" (click)="deleteValue(ind)" [disabled]="edition >= 0 || loading">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                        <button mat-mini-fab color="primary" 
+                            aria-label="botón con lapiz" *ngIf="selectedType != 'todos'" (click)="editValue(ind)" [disabled]="edition >= 0 || loading">
+                            <mat-icon>edit</mat-icon>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>

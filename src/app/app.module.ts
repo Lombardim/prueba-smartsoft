@@ -9,6 +9,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 
 
@@ -22,6 +23,7 @@ import { AddElementComponent } from './components/add-element/add-element.compon
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { LoadingComponent } from './shared/loading/loading.component';
+import { EditDialogComponent } from './shared/edit-dialog/edit-dialog.component';
 
 
 
@@ -35,11 +37,13 @@ import { LoadingComponent } from './shared/loading/loading.component';
     AddElementComponent,
     SidebarComponent,
     NavbarComponent,
-    LoadingComponent
+    LoadingComponent,
+    EditDialogComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
     MatCardModule,

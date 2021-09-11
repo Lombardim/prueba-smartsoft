@@ -1,4 +1,3 @@
-import { ThrowStmt } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
@@ -25,22 +24,16 @@ export class AddElementComponent implements OnInit {
   loading: boolean = false;
 
   elementOptions: any = 
-    { 
-      "posts": {typeTitle: "AGREGAR POSTS", id: true, title: true, body: true, name: false, 
-        email: false, url: false, thumbnailUrl: false, completed: false
-      }
+    { "posts": {typeTitle: "AGREGAR POSTS", id: true, title: true, body: true, name: false, 
+        email: false, url: false, thumbnailUrl: false, completed: false }
     , "comments": {typeTitle: "AGREGAR COMENTARIO", id: true, title: false, body: true, name: true, 
-        email: true, url: false, thumbnailUrl: false, completed: false
-      }
+        email: true, url: false, thumbnailUrl: false, completed: false }
     , "albums": {typeTitle: "AGREGAR ALBUM", id: true, title: true, body: false, name: false, 
-        email: false, url: false, thumbnailUrl: false, completed: false
-      }
+        email: false, url: false, thumbnailUrl: false, completed: false }
     , "photos": {typeTitle: "AGREGAR FOTO", id: true, title: true, body: false, name: false, 
-        email: false, url: true, thumbnailUrl: true, completed: false
-      }
+        email: false, url: true, thumbnailUrl: true, completed: false }
     , "to-do": {typeTitle: "AGREGAR PENDIENTE", id: true, title: true, body: false, name: false, 
-        email: false, url: false, thumbnailUrl: false, completed: true
-      }      
+        email: false, url: false, thumbnailUrl: false, completed: true }      
     };
 
   type: FormControl = new FormControl("", Validators.required);
@@ -133,7 +126,7 @@ export class AddElementComponent implements OnInit {
       this.type.setValue("");
       this.cleanValues();
       this.selectType = !this.selectType;
-    }, 3000);    
+    }, 3000);
   }
 
   cleanValues(): void {
@@ -152,8 +145,13 @@ export class AddElementComponent implements OnInit {
   }
 
   addElement(): void {
-    let added:boolean = false;
-    
+    for(let i = 0; i < this._data.elementos[this.type.value].length; i++){
+      if(this._data.elementos[this.type.value][i].id === this.id.value){
+        this.openSnackBar("Esta ID ya existe", "Entendido");
+        return;
+      }
+    }
+    let added:boolean = false;    
     switch(this.type.value){
       case "posts":
         if(!this.id.invalid && !this.title.invalid && !this.body.invalid){
@@ -196,7 +194,7 @@ export class AddElementComponent implements OnInit {
           added = true;
         }
         break;
-      case "to-do":
+      case "todos":
         if(!this.id.invalid && !this.title.invalid){
           this._data.addElement( {
             id: this.id.value,

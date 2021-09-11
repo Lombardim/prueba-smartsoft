@@ -1,0 +1,55 @@
+<div class="dialog">
+    <div class="dialog-head">
+        <h1>EDITAR ELEMENTO</h1>
+    </div>
+    <div class="dialog-body">
+        <form>
+            <mat-form-field appearance="fill" *ngIf="editElements.id">
+                <mat-label>ID del elemento: </mat-label>
+                <input matInput placeholder="Escriba la ID... " 
+                    [formControl]="id" required>
+                <mat-error *ngIf="id.invalid">{{ getErrorMessageID() }}</mat-error>  
+            </mat-form-field>
+            <mat-form-field appearance="fill" *ngIf="editElements.title">
+                <mat-label>Titulo del elemento: </mat-label>
+                <input matInput placeholder="Escriba el titulo... " 
+                    [formControl]="title" required>
+                <mat-error *ngIf="title.invalid">{{ getErrorMessageT() }}</mat-error>  
+            </mat-form-field>
+            <mat-form-field appearance="fill" *ngIf="editElements.name">
+                <mat-label>Nombre: </mat-label>
+                <input matInput placeholder="Escriba su nombre... " 
+                    [formControl]="name" required>
+                <mat-error *ngIf="name.invalid">{{ getErrorMessageN() }}</mat-error>  
+            </mat-form-field>
+            <mat-form-field appearance="fill" *ngIf="editElements.email">
+                <mat-label>Email: </mat-label>
+                <input type="email" matInput placeholder="Ej. ejemplo@gmail.com... " 
+                    [formControl]="email" required>
+                <mat-error *ngIf="email.invalid">{{ getErrorMessageE() }}</mat-error>  
+            </mat-form-field>
+            <mat-form-field appearance="fill" *ngIf="editElements.body">
+                <mat-label>Cuerpo del elemento: </mat-label>
+                <textarea matInput placeholder="Escriba el cuerpo... " 
+                    [formControl]="body" required></textarea>
+                <mat-error *ngIf="body.invalid">{{ getErrorMessageB() }} </mat-error>  
+            </mat-form-field>
+            <mat-form-field appearance="fill" *ngIf="editElements.url">
+                <mat-label>URL del elemento: </mat-label>
+                <input type="url" matInput placeholder="Ej. https://via.placeholder.com/150/771796" 
+                    [formControl]="url" required>
+                <mat-error *ngIf="url.invalid">{{ getErrorMessageU() }}</mat-error>  
+            </mat-form-field>
+            <mat-form-field appearance="fill" *ngIf="editElements.thumbnailUrl">
+                <mat-label>URL de la miniatura del elemento: </mat-label>
+                <input type="url" matInput placeholder="Ej. https://via.placeholder.com/150/771796" 
+                    [formControl]="thumbnail" required>
+                <mat-error *ngIf="thumbnail.invalid">{{ getErrorMessageTU() }}</mat-error>  
+            </mat-form-field>
+        </form>
+    </div>
+    <div class="dialog-footer">
+        <button (click)="setEdition()">EDITAR</button>
+        <button (click)="closeDialog()">CANCELAR</button>
+    </div>
+</div>

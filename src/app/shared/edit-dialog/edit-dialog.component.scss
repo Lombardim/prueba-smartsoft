@@ -1,0 +1,66 @@
+@mixin size($height, $width){
+    height: $height;
+    width: $width;
+}
+@mixin flex-position($direction, $justify, $align){
+    display: flex;
+    flex-direction: $direction;
+    justify-content: $justify;
+    align-items: $align;
+}
+@mixin box-shadow($x, $y, $blur, $c){ 
+    -webkit-box-shadow: $x $y $blur $c;
+    -moz-box-shadow: $x $y $blur $c;
+    -ms-box-shadow: $x $y $blur $c;
+    box-shadow: $x $y $blur $c;
+}
+.dialog {
+    background-color: white;
+    border-radius: 1rem;
+    min-height: 25vh;
+    @include size(100%, 30vw);
+    @include flex-position(column, space-between, center);
+    @include box-shadow(0, 0, .55rem, #000);
+    .dialog-head {
+        background-color: black;
+        border-radius: 1rem 1rem 0 0;
+        width: 100%;
+        color: white;
+        h1{
+            text-align: center;
+            margin-top: 2vh;
+        }
+    }
+
+    .dialog-body {
+        @include size(100%, 100%);
+        margin: .5rem auto;
+        form{
+            @include flex-position(column, flex-start, center   );
+            @include size(100%, 100%);
+            mat-form-field{
+                width: 95%;
+            }        
+            textarea {
+                height: 10vh;
+                resize: none;
+            }
+        }
+    }
+    .dialog-footer{
+        width: 100%;
+        text-align: end;
+        button {
+            margin: 0 1vw 2vh 0;
+            height: 5vh;
+            font-weight: 700;
+            border-radius: 1rem;
+            cursor: pointer;
+            outline: none;
+        }
+        button:hover,
+        button:focus{
+            background-color: rgba($color: #000, $alpha: 0.1);
+        }
+    }
+}

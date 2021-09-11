@@ -1,0 +1,205 @@
+@mixin size($height, $width){
+    height: $height;
+    width: $width;
+}
+@mixin flex-position($direction, $justify, $align){
+    display: flex;
+    flex-direction: $direction;
+    justify-content: $justify;
+    align-items: $align;
+}
+@mixin box-shadow($x, $y, $blur, $c){ 
+    -webkit-box-shadow: $x $y $blur $c;
+    -moz-box-shadow: $x $y $blur $c;
+    -ms-box-shadow: $x $y $blur $c;
+    box-shadow: $x $y $blur $c;
+}
+
+body {
+    background-color: rgba($color: #000, $alpha: .2);
+    overflow: hidden;
+}
+.black-screen{
+    position: absolute;
+    top: 0;
+    @include size(100%, 100%);
+    background-color: rgba($color: #000, $alpha: .2);
+    z-index: 5;
+    cursor: progress;
+}
+
+.loading-bg{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    @include flex-position(row, center, center);
+}
+
+aside{
+    float: left;
+    position: fixed;
+    z-index: 2;
+    background-color: white;
+    @include size(100vh, 25%);
+    .side-bar{
+        position: relative;
+        @include size(100%, 100%);
+        .element{
+            @include size(10%, 100%);
+            @include flex-position(row, center, center);
+            font-weight: 450;
+            transition: background-color linear 250ms;
+            div{
+                @include size(100%, 90%);
+                @include flex-position(row, space-evenly, center);
+                border-bottom: .1em solid rgba($color: #777, $alpha: .3);
+                mat-icon{
+                    width: 30%;
+                }
+                span{
+                    width: 70%;
+                }
+            }            
+        }
+        .element:hover:not(.focused){
+            cursor: pointer;
+            background-color: #3f51b5;
+            color:white;    
+            div{
+                border: none;
+            }
+        }
+        .tab-control {
+            cursor: pointer;
+            @include flex-position(row, center, center);
+            position: absolute;
+            right: -4%;
+            bottom: 30%;
+            background-color: white;
+            @include box-shadow(-.3em, .2em, .5em, #777);
+            transform: scale(1.5);
+            transition: background-color linear 250ms;
+        }   
+        .tab-control:hover{
+            background-color: #3f51b5;
+            color: white;
+            
+        }
+        .change-tab{
+            right: -13%;
+        }
+    }
+    .focused{
+        background-color: #3f51b55e;
+        border: none;
+        color: #3f51b5;
+        cursor: default;
+    }
+    
+}
+
+main{
+    float: right;
+    @include size(88.7vh, 75%);
+    overflow: auto;    
+    .add-element{
+        @include flex-position(row, flex-end, flex-end);
+        height: 5%;
+        border-radius: 0 .25em .25em 0;
+    }       
+    .elem-container{
+        @include flex-position(column, flex-start, flex-end);
+        .list-elements{
+            @include flex-position(row, space-around, center);
+            background-color: white;
+            margin-top: .5em;
+            width: 95%;
+            border-radius: .5em 0 0 .5em;
+            @include box-shadow(0, 0, .5em, #777);
+            img{
+                margin: .5rem;
+            }
+            .contents{
+                position: relative;
+                width: 65%;
+                @include flex-position(column, flex-start, flex-start);
+                .elem-head{
+                    width: 100%;
+                    @include flex-position(row, space-between, center);
+                    margin-left: 1em;
+                    text-transform: uppercase;
+                    h2 strong{
+                        background-color: green;
+                        color: white;
+                        font-size: .8em;
+                        padding: .1em .2em;
+                        border-radius: 1em;
+                    }
+                    mat-icon{
+                        cursor: pointer;
+                        transform: scale(1.3);
+                    }
+                }
+                .elem-body{
+                    margin-left: 1em;
+                    margin-bottom: 0.5em;
+                    width: 80ch;
+                    h4 {
+                        min-height: 0;
+                        text-decoration: underline;
+                        font-weight: 700;
+                    }
+                    p {
+                        min-height: 0;
+                    }
+                }
+            }
+
+            .buttons{
+                width: 20%;
+                height: auto;
+                @include flex-position(column, center, center);
+                button{
+                    margin-top: .5em;                    
+                }
+                button:last-child {
+                    margin-bottom: .5em;
+                }
+                button:hover{
+                    @include box-shadow(0, 0, 10px, #000133);
+                }
+            }
+        }
+    }
+}
+
+.big-main {
+    @include size(88.7vh, 95%);
+}
+
+.small-tab {
+    @include size(100%, 5%);
+    span{
+        display: none;
+    }
+}
+
+@media (max-width: 449px){
+        
+}
+
+@media (min-width: 450px){
+     
+}
+
+@media (min-width: 601px){
+      
+}
+@media (min-width: 751px){
+    
+}
+
+@media (min-width: 1000px){
+    
+}
