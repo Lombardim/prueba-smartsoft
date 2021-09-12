@@ -36,8 +36,7 @@
                         <mat-error *ngIf="passWord.invalid">{{getErrorMessageP()}}</mat-error>
                     </mat-form-field>
                     <mat-card-actions>
-                        <!-- FUNCTIONALITY NEEDS TO BE ADDED -->
-                        <button mat-raised-button color="primary">CREAR CUENTA</button>                            
+                        <button mat-raised-button color="primary" (click)="addAccount()">CREAR CUENTA</button>                            
                     </mat-card-actions>                   
                 </form>
             </mat-card-content>

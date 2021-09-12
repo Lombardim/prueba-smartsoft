@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
+import { BaseDatosService } from 'src/app/services/base-datos.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -13,7 +14,7 @@ export class SidebarComponent implements OnInit {
   direction: string = 'chevron_left';
   big: boolean = true;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private _datos: BaseDatosService) { }
 
   ngOnInit(): void {
   }
@@ -21,6 +22,7 @@ export class SidebarComponent implements OnInit {
   openRoute(path: string): void {
     this.router.navigate([path]);
   }
+
   tabControl(): void {
     if(this.direction === 'chevron_left'){
       this.direction = "chevron_right";

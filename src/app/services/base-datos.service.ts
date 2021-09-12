@@ -71,4 +71,13 @@ export class BaseDatosService {
     return userExist.length > 0;
   }
 
+  addUser(user: usuario): boolean{
+    const userExist = this.users.filter(data => user.username == data.username);
+    if(userExist.length === 0){
+      this.users.push(user);
+      return false;
+    }
+    return true;
+  }
+
 }

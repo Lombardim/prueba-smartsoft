@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { BaseDatosService } from 'src/app/services/base-datos.service';
 
 @Component({
   selector: 'app-register',
@@ -18,13 +19,28 @@ export class RegisterComponent implements OnInit {
   passWord: FormControl  = new FormControl('', [Validators.required, Validators.minLength(6)]);
   hide: boolean = true;
   
-  constructor(private _snackBar: MatSnackBar, private router: Router) { }
+  constructor(private _snackBar: MatSnackBar, private _data: BaseDatosService, private router: Router) { }
 
   ngOnInit(): void {
   }
 
   openLogin(): void {
-    this.router.navigate(['']);
+    this.router.navigate(['login']);
+  }
+
+  addAccount(): void{
+    if(!this.userName.invalid && !this.passWord.invalid && !this.email.invalid){
+      const USER = {
+        username: this.userName.value,
+        password: this.passWord.value,
+        email: this.email.value
+      }
+      if(this._data.addUser(USER)){
+        this.router.navigate(["home"]);
+      }
+    }else{
+      this.openSnackBar("Debe llenar todos los campos", "Entendido");
+    }
   }
 
   openSnackBar(text: string, close: string) {

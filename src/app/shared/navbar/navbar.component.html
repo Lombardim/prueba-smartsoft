@@ -3,7 +3,8 @@
         src="https://www.smartsoftlabs.com/wp-content/uploads/2020/08/cropped-Logo.png" alt="Smartsoft logo">
     <h1> {{ title }} </h1>
     <a mat-icon-button aria-label="boton con icono para cerrar sesion" 
-    matTooltip="CERRAR SESION" [matTooltipPosition]="'above'" class="logout">
+        matTooltip="CERRAR SESION" [matTooltipPosition]="'above'" 
+        class="logout" (click)="logOut()">
         <mat-icon> logout </mat-icon>
     </a>
 </nav>
