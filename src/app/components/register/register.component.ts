@@ -13,9 +13,8 @@ export class RegisterComponent implements OnInit {
   vPosition: MatSnackBarVerticalPosition  = "bottom";
 
 
-  name: FormControl = new FormControl('', Validators.required);
-  lastName: FormControl = new FormControl('', Validators.required);
   userName: FormControl  = new FormControl('', Validators.required);
+  email: FormControl  = new FormControl('', [Validators.required, Validators.email]);
   passWord: FormControl  = new FormControl('', [Validators.required, Validators.minLength(6)]);
   hide: boolean = true;
   
@@ -35,22 +34,7 @@ export class RegisterComponent implements OnInit {
       verticalPosition: this.vPosition,
     });
   }
-
-  getErrorMessageN():string {
-    if (this.name.hasError('required')) {
-      let message: string = 'Debe escribir su nombre';
-      return message;
-    }
-    return '';
-  }
-  getErrorMessageL():string {
-    if (this.lastName.hasError('required')) {
-      let message: string = 'Debe escribir su apellido';
-      return message;
-    }
-    return '';
-  }
-
+  
   getErrorMessageU():string {
     if (this.userName.hasError('required')) {
       let message: string = 'Debe escribir su nombre de usuario';
@@ -59,6 +43,18 @@ export class RegisterComponent implements OnInit {
     return '';
   }
 
+  getErrorMessageE():string {
+    if (this.email.hasError('required')) {
+      let message: string = 'Debe escribir un email';
+      return message;
+    }
+    if (this.email.hasError('email')) {
+      let message: string = 'El formato que escribió es incorrecto';
+      return message;
+    }
+    return '';
+  }
+  
   getErrorMessageP():string {
     if (this.passWord.hasError('required')){
       let message: string = 'Debe escribir su contraseña';

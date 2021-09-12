@@ -23,8 +23,7 @@
                         <mat-error *ngIf="passWord.invalid">{{getErrorMessageP()}}</mat-error>
                     </mat-form-field>
                     <mat-card-actions>                     
-                        <!-- LOGIN FUNCTIONALITY NEEDS TO BE ADDED -->
-                        <button mat-raised-button color="primary">INICIAR SESION</button>
+                        <button mat-raised-button color="primary" (click)="logIn()">INICIAR SESION</button>
                         <div class="links">
                             <a mat-button (click)="openRegister()">¿Desea crear una cuenta?</a>
                             <a mat-button (click)="openSnackBar('Esta funcionalidad aún no está disponible', 'Entendido')">¿Olvidó su contraseña?</a>

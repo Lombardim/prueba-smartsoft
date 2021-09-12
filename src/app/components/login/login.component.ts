@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { BaseDatosService } from 'src/app/services/base-datos.service';
 
 @Component({
   selector: 'app-login',
@@ -12,12 +13,11 @@ export class LoginComponent implements OnInit {
   hPosition: MatSnackBarHorizontalPosition = "end";
   vPosition: MatSnackBarVerticalPosition  = "bottom";
 
-
   userName = new FormControl('', Validators.required);
   passWord = new FormControl('', [Validators.required, Validators.minLength(6)]);
   hide: boolean = true;
   
-  constructor(private _snackBar: MatSnackBar, private router: Router) { }
+  constructor(private _snackBar: MatSnackBar, private _datos: BaseDatosService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -32,6 +32,16 @@ export class LoginComponent implements OnInit {
       horizontalPosition: this.hPosition,
       verticalPosition: this.vPosition,
     });
+  }
+
+  logIn(): void{
+    
+    if(this._datos.userLogIn(this.userName.value, this.passWord.value)){
+      this.router.navigate(['home']);
+    }else{
+      this.openSnackBar("El nombre de usuario o contraseña son incorrectos", "Entendido");
+    }
+
   }
 
   getErrorMessageU():string {

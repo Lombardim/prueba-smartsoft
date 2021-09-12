@@ -4,13 +4,14 @@ import { AddElementComponent } from './components/add-element/add-element.compon
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import { AuthGuard } from './shared/auth.guard';
 
 const routes: Routes = [
-  {path: '', component: LoginComponent},
+  {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
-  {path: 'dashboard', component: DashboardComponent},
+  {path: 'dashboard', component: DashboardComponent, canActivate:[AuthGuard]},
   {path: 'new-element', component: AddElementComponent},
-  {path: '**', redirectTo: ''}
+  {path: '**', redirectTo: 'dashboard'}
 ];
 
 @NgModule({

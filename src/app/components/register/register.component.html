@@ -16,21 +16,16 @@
             </mat-card-title>
             <hr>
             <mat-card-content>
-                <form>
-                    <mat-form-field appearance="fill">
-                        <mat-label>Ingrese su nombre: </mat-label>
-                        <input matInput placeholder="Escriba su nombre..." [formControl]="name" required>
-                        <mat-error *ngIf="userName.invalid">{{getErrorMessageN()}}</mat-error>
-                    </mat-form-field>
-                    <mat-form-field appearance="fill">
-                        <mat-label>Ingrese su apellido: </mat-label>
-                        <input matInput placeholder="Escriba su apellido..." [formControl]="lastName" required>
-                        <mat-error *ngIf="userName.invalid">{{getErrorMessageL()}}</mat-error>
-                    </mat-form-field>
+                <form>                    
                     <mat-form-field appearance="fill">
                         <mat-label>Ingrese su nombre de usuario: </mat-label>
                         <input matInput placeholder="Escriba su nombre de usuario..." [formControl]="userName" required>
                         <mat-error *ngIf="userName.invalid">{{getErrorMessageU()}}</mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Ingrese su email: </mat-label>
+                        <input type="email" matInput placeholder="Ej. johndoe@gmail.com..." [formControl]="email" required>
+                        <mat-error *ngIf="email.invalid">{{getErrorMessageE()}}</mat-error>
                     </mat-form-field>
                     <mat-form-field appearance="fill">
                         <mat-label>Escriba su contraseña: </mat-label>

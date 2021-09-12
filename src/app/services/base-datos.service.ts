@@ -1,12 +1,18 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { usuario } from '../shared/interfaces/usuario';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BaseDatosService {
 
+  activeUser: string = "none";
+
+  users: usuario[] = [
+    {username: "admin", password: "123456", email: "admin@admin.com"}
+  ];
 
   elementos: any = {
     posts: [],
@@ -56,4 +62,13 @@ export class BaseDatosService {
   getAddedElements(type: string): any {
     return this.elementos[type];
   }
+
+  userLogIn(username: string, password: string):boolean {
+    const userExist = this.users.filter(data => 
+      data.username === username && data.password === password
+    );
+    this.activeUser = userExist[0].username;
+    return userExist.length > 0;
+  }
+
 }
