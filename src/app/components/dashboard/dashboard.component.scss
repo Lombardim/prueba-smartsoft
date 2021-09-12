@@ -37,11 +37,8 @@ body {
 }
 
 aside{
-    float: left;
-    position: fixed;
     z-index: 2;
     background-color: white;
-    @include size(100vh, 25%);
     .side-bar{
         position: relative;
         @include size(100%, 100%);
@@ -96,7 +93,6 @@ aside{
         color: #3f51b5;
         cursor: default;
     }
-    
 }
 
 main{
@@ -186,20 +182,185 @@ main{
 }
 
 @media (max-width: 449px){
-        
+    body {
+        display: flex;
+        flex-direction: column;
+        @include size(100vh, 100vw);
+    }
+    main {
+        float: none;
+        @include size(100vh, 100vw);     
+        .elem-container{
+            .list-elements{   
+                width: 100%;
+                border-radius: .5em;
+                img{
+                    display: none;
+                }
+                .contents{
+                    position: relative;
+                    width: 65%;
+                    .elem-body{
+                        margin-left: 1em;
+                        margin-bottom: 0.5em;
+                        width: 40ch;
+                    }
+                }
+            }
+            .fake-element{
+                @include size(23vh, 100vw);
+            }
+        }
+    }
+    aside{
+        float: none;
+        position: absolute;
+        bottom: 0;
+        @include size(10vh, 100vw);
+        .side-bar{
+            @include flex-position(row, space-evenly, center);
+            .element {
+                @include size(100%, 100%);
+                div{    
+                    @include size(100%, 100%);
+                    span{
+                        display: none;  
+                    }
+                }
+            }
+            .tab-control {
+                display: none;
+            }
+        }
+    }      
 }
 
 @media (min-width: 450px){
-     
+    body {
+        display: flex;
+        flex-direction: column;
+        @include size(100vh, 100vw);
+    }
+    main {
+        float: none;
+        @include size(100vh, 100vw);     
+        .elem-container{
+            .list-elements{   
+                width: 100%;
+                border-radius: .5em;
+                img{
+                    display: none;
+                }
+                .contents{
+                    position: relative;
+                    width: 65%;
+                    .elem-body{
+                        margin-left: 1em;
+                        margin-bottom: 0.5em;
+                        width: 40ch;
+                    }
+                }
+            }
+            .fake-element{
+                @include size(22.5vh, 100vw);
+            }
+        }
+    }
+    aside{
+        float: none;
+        position: absolute;
+        bottom: 0;
+        @include size(10vh, 100vw);
+        .side-bar{
+            @include flex-position(row, space-evenly, center);
+            .element {
+                @include size(100%, 100%);
+                div{    
+                    @include size(100%, 100%);
+                    span{
+                        display: none;  
+                    }
+                }
+            }
+            .tab-control {
+                display: none;
+            }
+        }
+    }
 }
 
 @media (min-width: 601px){
-      
-}
-@media (min-width: 751px){
-    
+    main {
+        .elem-container{
+            .list-elements{   
+                img{
+                    display: block;
+                    margin-left: .5rem;
+                }
+            }
+            .fake-element{
+                @include size(22.5vh, 100vw);
+            }
+        }
+    }
+    aside{
+        float: none;
+        position: absolute;
+        bottom: 0;
+        @include size(10vh, 100vw);
+        .side-bar{
+            @include flex-position(row, space-evenly, center);
+            .element {
+                @include size(100%, 100%);
+                div{    
+                    @include size(100%, 100%);
+                    span{
+                        display: none;  
+                    }
+                }
+            }
+            .tab-control {
+                display: none;
+            }
+        }
+    }
 }
 
 @media (min-width: 1000px){
-    
+    aside{
+        float: left;
+        position: fixed;
+        z-index: 2;
+        background-color: white;
+        @include size(89vh, 25%);
+        .side-bar{
+            @include flex-position(column, flex-start, flex-start);
+            .element{
+                @include size(12.5%, 100%);
+                div {    
+                    @include size(100%, 90%);
+                    @include flex-position(row, space-evenly, center);
+                    span {
+                        display: block;
+                    }
+                }
+            }
+        }
+    }
+    main{
+        float: right;
+        @include size(88.7vh, 75%);
+        .elem-container{
+            @include flex-position(column, flex-start, flex-end);
+            .list-elements{
+                @include flex-position(row, space-around, center);
+                margin-top: .5em;
+                width: 95%;
+                border-radius: .5em 0 0 .5em;
+                .contents .elem-body{
+                    width: 80ch;
+                }
+            }
+        }
+    }   
 }
